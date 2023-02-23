@@ -14,6 +14,7 @@ function randomPercent() {
  * @params {function} callback - The function called with form data.
  */
 export function onMessage(callback) {
+  debugger;
   callbacks.push(callback);
 }
 
@@ -84,6 +85,7 @@ export async function saveLikedFormSubmission(formSubmission) {
  * Creates a mock server response
  */
 export function createMockFormSubmission() {
+  debugger;
   const formSubmission = {
     id: chance.guid(),
     data: {
