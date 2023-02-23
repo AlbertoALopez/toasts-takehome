@@ -9,8 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
-import { SubmissionContext } from './contexts/submissionContext';
-import { ToastContext } from './contexts/toastContext';
+import { SubmissionContext } from '../contexts/submissionContext';
+import { ToastContext } from '../contexts/toastContext';
 
 export default function Header() {
   const { newSubmission, addSavedSubmission } = useContext(SubmissionContext);

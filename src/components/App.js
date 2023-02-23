@@ -5,8 +5,8 @@ import Header from './Header';
 import Content from './Content';
 import Toast from './Toast';
 
-import SubmissionProvider from './contexts/submissionContext';
-import ToastProvider from './contexts/toastContext';
+import SubmissionProvider from '../contexts/submissionContext';
+import ToastProvider from '../contexts/toastContext';
 
 function App() {
   return (

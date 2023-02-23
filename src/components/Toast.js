@@ -4,7 +4,7 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { ToastContext } from './contexts/toastContext';
+import { ToastContext } from '../contexts/toastContext';
 
 export default function Toast() {
   const { toast, handleClose, open } = useContext(ToastContext);
