@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -8,12 +8,20 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { SubmissionContext } from './contexts/useSubmissionContext';
+
+import { SubmissionContext } from './contexts/submissionContext';
+import { ToastContext } from './contexts/toastContext';
 
 export default function Header() {
-  const { addSubmission } = useContext(SubmissionContext);
+  const { newSubmission, addSavedSubmission } = useContext(SubmissionContext);
+  const { openToast } = useContext(ToastContext);
 
-  const onButtonClick = () => addSubmission();
+  const createNewSubmission = () => {
+    const submission = newSubmission();
+    const message = `${submission.data.firstName} ${submission.data.lastName} ${submission.data.email}`;
+    const saveSubmission = () => addSavedSubmission(submission);
+    openToast({ message, callback: saveSubmission, id: submission.id });
+  };
 
   return (
     <Box sx={{flexGrow: 1}}>
@@ -34,7 +42,7 @@ export default function Header() {
             variant="contained"
             size="small"
             color="secondary"
-            onClick={onButtonClick}
+            onClick={createNewSubmission}
           >
             New Submission
           </Button>

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 
-import { SubmissionContext } from './contexts/useSubmissionContext';
+import { SubmissionContext } from './contexts/submissionContext';
 
 export default function Content() {
   const { submissions } = useContext(SubmissionContext);
@@ -12,8 +12,7 @@ export default function Content() {
     <Box sx={{marginTop: 3}}>
       <Typography variant="h4">Liked Form Submissions</Typography>
 
-      <Typography variant="body1" sx={{fontStyle: 'italic', marginTop: 1}}>
-        <Paper>
+      <Paper>
           {submissions.map(submission => (
             <li key={submission.id} >
               <span>
@@ -22,7 +21,6 @@ export default function Content() {
             </li>
           ))}
         </Paper>
-      </Typography>
     </Box>
   );
 }

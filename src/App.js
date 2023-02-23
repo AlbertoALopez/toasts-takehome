@@ -3,17 +3,22 @@ import Container from '@mui/material/Container';
 
 import Header from './Header';
 import Content from './Content';
+import Toast from './Toast';
 
-import SubmissionProvider from './contexts/useSubmissionContext';
+import SubmissionProvider from './contexts/submissionContext';
+import ToastProvider from './contexts/toastContext';
 
 function App() {
   return (
     <>
       <SubmissionProvider>
-        <Header />
-        <Container>
-          <Content />
-        </Container>
+        <ToastProvider>
+          <Header />
+          <Container>
+            <Content />
+          </Container>
+          <Toast />
+        </ToastProvider>
       </SubmissionProvider>
     </>
   );

@@ -11,34 +11,24 @@ export const SubmissionContext = createContext(null);
 export default function SubmissionProvider({ children }) {
   const [submissions, setSubmissions] = useState([]);
 
-  const addSubmission = async () => {
+  const newSubmission = () => {
     let data;
     onMessage(response => {
-      debugger;
       data = response;
     });
     createMockFormSubmission();
-    debugger;
-    await saveLikedFormSubmission(data);
-    // setSubmissions(submissions => [...submissions, data]);
+
+    return data;
   };
 
-
-  const removeSubmission = async (id) => {
-    const newSubmissions = submissions.filter(t => t.id === id);
-
-    try {
-      await saveLikedFormSubmission(newSubmissions);
-      setSubmissions(newSubmissions)
-    } catch {
-      debugger;
-    }
+  const addSavedSubmission = async submission => {
+    await saveLikedFormSubmission(submission)
+    setSubmissions(submissions => [...submissions, submission]);
   };
 
   useEffect(() => {
     async function getSavedFormSubmissions() {
       const { formSubmissions = [] } = await fetchLikedFormSubmissions();
-      debugger;
       setSubmissions(formSubmissions);
     }
 
@@ -48,8 +38,8 @@ export default function SubmissionProvider({ children }) {
   return (
     <SubmissionContext.Provider
       value={{
-        addSubmission,
-        removeSubmission,
+        newSubmission,
+        addSavedSubmission,
         submissions,
       }}
     >
